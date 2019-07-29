@@ -1,0 +1,7 @@
+pymystem3==0.1.9
+pandas==0.20.3
+graphviz==0.8.2
+tensorflow==1.4.1
+transliterate
+sklearn
+sklearn-crfsuite
