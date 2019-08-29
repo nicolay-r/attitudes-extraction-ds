@@ -12,6 +12,8 @@ Source code for RANLP'2019 "Distant Supervision for Sentiment Attitude Extractio
 
 2. [RuSentiFrames-1.0](https://github.com/nicolay-r/RuSentiFrames) -- utilized as a list of frame-entries in Frame-Based approach;
 
+3. [RuAttitudes-1.0](https://github.com/nicolay-r/RuAttitudes) -- is a colection, developed in related paper.
+
 ## Convolutional Neural Networks for Relation Extraction 
 
 Checkout [networks](/networks) folder for details.
