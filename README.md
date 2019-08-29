@@ -14,6 +14,8 @@ Source code for RANLP'2019 "Distant Supervision for Sentiment Attitude Extractio
 
 ## Convolutional Neural Networks for Relation Extraction 
 
+Checkout [networks](/networks) folder for details.
+
 Architecture aspects of models refers to the following papers:
 
 1. **Relation Classification via Convolutional Deep Neural Network** 
@@ -47,7 +49,7 @@ It assumes to utilize different sentence encoders: CNN, PCNN, etc.
 
 Utilize two different approaches:
 
-1. Single Sentence Training: matching label towards a single sentece.
+1. Single Sentence Training: matching label towards a single sentence.
     * Models: ```CNN```, ```PCNN```
 
 2. Multi Sentence Training: matching a label towards the sentences set.
@@ -65,21 +67,23 @@ in comparison with ```RSR``` experiment:
 ![](docs/costs_cmp.png)
 > NOTE: The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
 
-## Result Analysis 
+## Investigating the Difference: Result Analysis 
 
 Analysis of **difference set** between ```RSR``` and ```RSR+RA``` results in: 
-  1. [List](docs/discrepancy_stat.pdf) of most frequent verbs/nonuns/frames/attitudes.
+  1. [List](docs/discrepancy_stat.pdf) of 25 most frequent verbs (V), nonuns (N), frames (F), opinions(O), separately 
+  for positive (+) and negative (-) classes.
   2. Related statistic combined with frequencies of related verbs/nouns/frames in RuAttitudes.
   
-     Bar candles illustrate a variation across different models: 
+     Bar candles illustrate a variation of frequencies across different models: 
      ```CNN```, 
      ```PCNN```, 
      ```MI-CNN```, 
      ```MI-PCNN```. 
      
 ![](docs/avg_pn.png)
->  NOTE: In figure above, X axis indices related to terms, presented in [List](docs/discrepancy_stat.pdf)
+>  NOTE: In figure above, X axis indices related to terms, presented in [List](docs/discrepancy_stat.pdf), or figure below
 
+![](docs/discrepancy_stat.png)
 
 ## Installation
 
