@@ -2,7 +2,15 @@
 ![](https://img.shields.io/badge/Python-2.7-brightgreen.svg)
 ![](https://img.shields.io/badge/TensorFlow-1.4.1-yellowgreen.svg)
 
-Source code for RANLP'2019 paper "Distant Supervision for Sentiment Attitude Extraction"
+Source code for RANLP'2019 "Distant Supervision for Sentiment Attitude Extraction" 
+[[paper]](),
+[[poster]](docs/ranlp_2019_poster_portrait.pdf).
+
+## Data Source References
+
+1. [RuSentRel-1.1](https://github.com/nicolay-r/RuSentRel) -- utilized in experiments as a source of etalon attitudes;
+
+2. [RuSentiFrames-1.0](https://github.com/nicolay-r/RuSentiFrames) -- utilized as a list of frame-entries in Frame-Based approach;
 
 ## Convolutional Neural Networks for Relation Extraction 
 
@@ -34,6 +42,44 @@ the related architecture dubbed as  **Piecewise Convolutional Neural Network** (
 It assumes to utilize different sentence encoders: CNN, PCNN, etc.
 	* Xiaotian Jiang, Quan Wang, Peng Li, Bin Wang
 	* COLING 2016
+	
+## Training
+
+Utilize two different approaches:
+
+1. Single Sentence Training: matching label towards a single sentece.
+    * Models: ```CNN```, ```PCNN```
+
+2. Multi Sentence Training: matching a label towards the sentences set.
+    * Models: ```MI-CNN```, ```MI-PCNN```
+	
+## Experiments Analysis
+
+Figure below illustrates a variation in cost during model training process, in two experiments: 
+```RSR``` and ```RSR+RA```(RSR+DEV in figure).
+
+An application of RuAttitudes in ```RSR+RA``` 
+experiment **results in faster training process**, 
+in comparison with ```RSR``` experiment:
+
+![](docs/costs_cmp.png)
+> NOTE: The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
+
+## Result Analysis 
+
+Analysis of **difference set** between ```RSR``` and ```RSR+RA``` results in: 
+  1. [List](docs/discrepancy_stat.pdf) of most frequent verbs/nonuns/frames/attitudes.
+  2. Related statistic combined with frequencies of related verbs/nouns/frames in RuAttitudes.
+  
+     Bar candles illustrate a variation across different models: 
+     ```CNN```, 
+     ```PCNN```, 
+     ```MI-CNN```, 
+     ```MI-PCNN```. 
+     
+![](docs/avg_pn.png)
+>  NOTE: In figure above, X axis indices related to terms, presented in [List](docs/discrepancy_stat.pdf)
+
 
 ## Installation
 
@@ -45,4 +91,4 @@ cd data && ./install.sh
 
 ## References
 
-TODO.
+> NOTE: This section will be updated when related paper become available at aclweb.
