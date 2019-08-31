@@ -1,10 +1,15 @@
-# attitudes-extraction-ds
+# Application of Distant Supervision in Sentiment Attitudes Classification Task
 ![](https://img.shields.io/badge/Python-2.7-brightgreen.svg)
 ![](https://img.shields.io/badge/TensorFlow-1.4.1-yellowgreen.svg)
 
-Source code for RANLP'2019 "Distant Supervision for Sentiment Attitude Extraction" 
+This repository provides a source code of models and related experiments, 
+conducted as a part of the following paper:
+
+* Distant Supervision for Sentiment Attitude Extraction
 [[paper]](),
-[[poster]](docs/ranlp_2019_poster_portrait.pdf).
+[[poster]](docs/ranlp_2019_poster_portrait.pdf)
+    * Rusnachenko Nikolay, Loukachevitch Natalia, Tutubalina Elena
+    * RANLP-2019
 
 ## Data Source References
 
@@ -16,16 +21,27 @@ Source code for RANLP'2019 "Distant Supervision for Sentiment Attitude Extractio
 
 ## Convolutional Neural Networks for Relation Extraction 
 
-Checkout [networks](/networks) folder for details.
+Checkout [networks](/networks) folder for implementation details.
 
-Architecture aspects of models refers to the following papers:
+Architecture aspects of models are as follows:
+
+* We utilize **Position Feature (PF)** -- is an embedding of distance between a given word towards each entity pair
+This feature has been originaly proposed in [1];
+
+* We apply and [implement](networks/context/architectures/pcnn.py) 
+the related architecture dubbed as  **Piecewise Convolutional Neural Network** (PCNN) [2];
+
+* This repository provides an [implementation](networks/mimlre) of the related architecture 
+(Figure 2 above) in a way of a framework that allows to train models by matching a context (group of sentences) 
+towards sentiment label. 
+It assumes to utilize different sentence encoders: CNN, PCNN, etc. [3].
+
+### Related Works
 
 1. **Relation Classification via Convolutional Deep Neural Network** 
 [[paper]](http://www.aclweb.org/anthology/C14-1220) 
 [[code]](https://github.com/roomylee/cnn-relation-extraction) 
 [[review]](/relation_extraction/Relation_Classification_via_Convolutional_Deep_Neural_Network.md)
-We utilize **Position Feature (PF)** -- is an embedding of distance between a given word towards each entity pair
-This feature has been originaly proposed in:
 	* Daojian Zeng, Kang Liu, Siwei Lai, Guangyou Zhou and Jun Zhao
 	* COLING 2014
 
@@ -33,29 +49,35 @@ This feature has been originaly proposed in:
 [[paper]](http://www.emnlp2015.org/proceedings/EMNLP/pdf/EMNLP203.pdf) 
 [[review]](/relation_extraction/Distant_Supervision_for_Relation_Extraction_via_Piecewise_Convolutional_Neural_Networks.md) 
 [[code]](https://github.com/nicolay-r/sentiment-pcnn)
--- We apply and [implement](networks/context/architectures/pcnn.py) 
-the related architecture dubbed as  **Piecewise Convolutional Neural Network** (PCNN).
 	* Daojian Zeng, Kang Liu, Yubo Chen and Jun Zhao
 	* EMNLP 2015
 
 3. **Relation Extraction with Multi-instance Multi-label Convolutional Neural Networks** 
 [[paper]](https://pdfs.semanticscholar.org/8731/369a707046f3f8dd463d1fd107de31d40a24.pdf) 
 [[review]](/relation_extraction/Relation_Extraction_with_Multi-instance_Multi-label_Convolutional_Neural_Networks.md)
--- This repository provides an [implementation](networks/mimlre) of the related architecture 
-(Figure 2 above) in a way of a framework that allows to train models by matching a context (group of sentences) towards sentiment label. 
-It assumes to utilize different sentence encoders: CNN, PCNN, etc.
 	* Xiaotian Jiang, Quan Wang, Peng Li, Bin Wang
 	* COLING 2016
 	
 ## Training
 
-Utilize two different approaches:
+We utilize two different approaches:
 
-1. Single Sentence Training: matching label towards a single sentence.
+1. **Single Sentence Training:** matching label towards a single sentence.
     * Models: ```CNN```, ```PCNN```
 
-2. Multi Sentence Training: matching a label towards the sentences set.
+2. **Multi Sentence Training:** matching a label towards the sentences set.
     * Models: ```MI-CNN```, ```MI-PCNN```
+    
+Named entities, which are related to *Subject* and *Object* of a given attitude, 
+considered as **masked**. 
+[[proof]](https://github.com/nicolay-r/attitudes-extraction-ds/blob/c7eee45209d95d500f6c00b4d93bbba6887cbf37/networks/context/processing/sample.py#L132)
+
+For example, given an attitude 'USA'->'Russia' with the following context:
+
+* Original: "... [USA] is considering the possibility of new sanctions against [Russia] ..."
+* Masked: "... **[MASK]** is considering the possibility of new sanctions against **[MASK]** ..."
+
+> **NOTE:** Other named entities, mentioned in text, **remains non-masked**.
 	
 ## Experiments Analysis
 
