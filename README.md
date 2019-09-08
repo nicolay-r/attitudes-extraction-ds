@@ -68,6 +68,8 @@ We utilize two different approaches:
 2. **Multi Sentence Training:** matching a label towards the sentences set.
     * Models: ```MI-CNN```, ```MI-PCNN```
     
+#### Masking Entities in Model Input
+    
 Named entities, which are related to *Subject* and *Object* of a given attitude, 
 considered as **masked**. 
 [[proof]](https://github.com/nicolay-r/attitudes-extraction-ds/blob/c7eee45209d95d500f6c00b4d93bbba6887cbf37/networks/context/processing/sample.py#L132)
@@ -78,6 +80,17 @@ For example, given an attitude 'USA'->'Russia' with the following context:
 * Masked: "... **[MASK]** is considering the possibility of new sanctions against **[MASK]** ..."
 
 > **NOTE:** Other named entities, mentioned in text, **remains non-masked**.
+
+#### Model Output
+
+The output of trained model is a two scale sentiment score: {pos, neg}. [see Note below]
+> **NOTE:** We adopt model designed for sentiment attitudes **extraction**, 
+which actually utilize [three scaled](settings.modify_classes_count(3)) 
+output {pos, neg, **neutral**}, 
+but there were no attitudes with 
+neutral score during in train/test subsets; 
+result model may return **neutral** score, however the amount 
+of related attitudes was significantly low.
 	
 ## Experiments Analysis
 
