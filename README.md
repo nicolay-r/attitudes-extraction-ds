@@ -85,7 +85,7 @@ For example, given an attitude 'USA'->'Russia' with the following context:
 
 The output of trained model is a two scale sentiment score: {pos, neg}. [see Note below]
 > **NOTE:** We adopt model designed for sentiment attitudes **extraction**, 
-which actually utilize [three scaled](settings.modify_classes_count(3)) 
+which actually utilize [three scaled](https://github.com/nicolay-r/attitudes-extraction-ds/blob/dcbe4f762f38827df3a042326be768c385b82ca6/predict_nn/ranlp/utils.py#L71) 
 output {pos, neg, **neutral**}, 
 but there were no attitudes with 
 neutral score during in train/test subsets; 
