@@ -132,4 +132,11 @@ cd data && ./install.sh
 
 ## References
 
-> NOTE: This section will be updated when related paper become available at aclweb.
+```
+@article{rusnachenko2019distant,
+  title={Distant Supervision for Sentiment Attitude Extraction},
+  author={Rusnachenko, Nicolay and Loukachevitch, Natalia and Tutubalina, Elena},
+  booktitle={RANLP},
+  year={2019}
+}
+```
