@@ -6,7 +6,7 @@ This repository provides a source code of models and related experiments,
 conducted as a part of the following paper:
 
 * Distant Supervision for Sentiment Attitude Extraction
-[[paper]](),
+[[paper-ranlp-proceeding]](http://lml.bas.bg/ranlp2019/proceedings-ranlp-2019.pdf),
 [[poster]](docs/ranlp_2019_poster_portrait.pdf)
     * Rusnachenko Nikolay, Loukachevitch Natalia, Tutubalina Elena
     * RANLP-2019
