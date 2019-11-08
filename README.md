@@ -92,7 +92,14 @@ neutral score during in train/test subsets;
 result model may return **neutral** score, however the amount 
 of related attitudes was significantly low.
 	
-## Experiments Analysis
+## Model Training Process Analysis
+
+> **UPD: (September 29)** It was found that hiddent states may vary out of [-1, 1] region 
+(see heatmap gif image below).
+In case of CNN, `tf.random_normal` call for initialization was used.
+Large values may negatively results on gradient.
+
+![](docs/cnn.gif)
 
 Figure below illustrates a variation in cost during model training process, in two experiments: 
 ```RSR``` and ```RSR+RA```(RSR+DEV in figure).
@@ -102,7 +109,13 @@ experiment **results in faster training process**,
 in comparison with ```RSR``` experiment:
 
 ![](docs/costs_cmp.png)
-> NOTE: The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
+
+> **UPD: (October 6)** Weights initialization of cnn-based models are `random_normal`.
+Switching to `xavier` results in increased training speed, since weights become in a [-1, 1] 
+region by the beginning.
+However the latter does not affects on result.
+
+> **UPD (August 1):** The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
 
 ## Investigating the Difference: Result Analysis 
 
