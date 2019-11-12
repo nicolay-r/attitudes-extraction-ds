@@ -94,7 +94,7 @@ of related attitudes was significantly low.
 	
 ## Model Training Process Analysis
 
-> **UPD: (September 29)** It was found that hiddent states may vary out of [-1, 1] region 
+> **UPD September 29th, 2019:** It was found that hiddent states may vary out of [-1, 1] region 
 (see heatmap gif image below).
 In case of CNN, `tf.random_normal` call for initialization was used.
 Large values may negatively results on gradient.
@@ -110,12 +110,12 @@ in comparison with ```RSR``` experiment:
 
 ![](docs/costs_cmp.png)
 
-> **UPD: (October 6)** Weights initialization of cnn-based models are `random_normal`.
+> **UPD October 6th, 2019:** Weights initialization of cnn-based models are `random_normal`.
 Switching to `xavier` results in increased training speed, since weights become in a [-1, 1] 
 region by the beginning.
 However the latter does not affects on result.
 
-> **UPD (August 1):** The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
+> **UPD August 1st, 2019:** The assumption here is a significantly increased scale of training set in case of ```RSR+RA``` experiment.
 
 ## Investigating the Difference: Result Analysis 
 
