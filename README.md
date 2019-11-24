@@ -92,6 +92,23 @@ neutral score during in train/test subsets;
 result model may return **neutral** score, however the amount 
 of related attitudes was significantly low.
 	
+## Embedding Analysis
+
+For words we utilize a pretrained Word2Vec model:
+
+ **RusVectores news-embedding (vector_size=1000)** 
+[[download]](https://rusvectores.org/static/models/rusvectores2/news_mystem_skipgram_1000_20_2015.bin.gz)
+
+Figure below illustrates embedding parameters distribution for each POS class 
+of first 1000 (out of 147k) words in embedding vocabulary.
+It is possible to see that parameters has a normal distribution.
+
+![](docs/embedding_distrib.png)
+
+> NOTE: To generate **token embedding vectors** , we utilize `numpy.random_sample` in [0, 1] region.
+
+> NOTE: To generate **feature embedding vectors** , we utilize `tf.random_normal_initializer`.
+	
 ## Model Training Process Analysis
 
 > **UPD: (September 29)** It was found that hiddent states may vary out of [-1, 1] region 
