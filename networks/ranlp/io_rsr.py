@@ -8,7 +8,7 @@ from networks.context.helpers.cv import items_to_cv_pairs
 
 class RaNLPConfTaskRuSentRelIO(NetworkIO):
 
-    __cv_count = 2
+    __cv_count = 3
     __etalon_root = join(io_utils.get_data_root(), u"ranlp/rsr/opinions")
     __src_file = join(io_utils.get_data_root(), u"ranlp/sources/rsr.txt")
     __splitted_data_folder = join(io_utils.get_data_root(), u"ranlp/rsr/splitted")
