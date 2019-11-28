@@ -3,21 +3,18 @@ from os.path import join
 
 import io_utils
 from networks.context.helpers.cv import items_to_cv_pairs
-from networks.ranlp.io_base import BaseAnswersIO
+from networks.io import NetworkIO
 
 
-class RaNLPConfTaskDevIO(BaseAnswersIO):
+class RaNLPConfTaskDevIO(NetworkIO):
 
     __cv_count = 10
     __etalon_root = join(io_utils.get_data_root(), u"ranlp/dev/opinions")
-    __answers_root_template = join(io_utils.get_data_root(), u"ranlp/dev/answers/{}")
     __src_file = join(io_utils.get_data_root(), u"ranlp/sources/same.txt")
     __splitted_data_folder = join(io_utils.get_data_root(), u"ranlp/dev/splitted")
 
     def __init__(self, model_to_pretrain_name):
-        super(RaNLPConfTaskDevIO, self).__init__(
-            answers_root= self.__answers_root_template.format(model_to_pretrain_name),
-            model_name=model_to_pretrain_name)
+        super(RaNLPConfTaskDevIO, self).__init__(model_to_pretrain_name)
         self.__cv_index = 0
 
     @property
@@ -60,7 +57,6 @@ class RaNLPConfTaskDevIO(BaseAnswersIO):
         return io_utils.get_rusvectores_news_embedding_filepath()
 
     def get_etalon_root(self):
-        # TODO. Use the same code.
         result = self.__etalon_root
         if not path.exists(result):
             makedirs(result)

@@ -45,7 +45,7 @@ class IAN(BaseContextNeuralNetwork):
                 ),
                 'softmax': tf.get_variable(
                     name='W_l',
-                    shape=[self.ContextEmbeddingSize, self.cfg.ClassesCount],
+                    shape=[self.ContextEmbeddingSize(), self.cfg.ClassesCount],
                     initializer=tf.random_uniform_initializer(-0.1, 0.1),
                     regularizer=tf.contrib.layers.l2_regularizer(self.cfg.L2Reg)
                 ),

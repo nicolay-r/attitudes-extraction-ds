@@ -1,8 +1,6 @@
 from core.runtime.parser import ParsedText
 from core.source.embeddings.rusvectores import RusvectoresEmbedding
 from core.source.embeddings.static import StaticEmbedding
-from networks.pretraining.helpers.news_helper import CustomProcessingHelper
-from core.source.ruattitudes.reader import RuAttitudesFormatReader, ProcessedNews, ProcessedSentence
 from networks.context.configurations.base import CommonModelSettings
 from networks.context.helpers.bags import BagsCollectionHelper
 from networks.context.helpers.labels.single import SingleLabelsHelper
@@ -12,6 +10,8 @@ from networks.context.processing.relations.collection import ExtractedRelationsC
 from networks.context.processing.relations.relation import ExtractedRelation
 from networks.context.processing.sample import Sample
 from networks.context.processing.utils import create_term_embedding_matrix
+from networks.pretraining.helpers.news import NewsProcessingHelper
+from networks.pretraining.utils.reader import ContextsReader, ProcessedNews, ProcessedSentence
 
 
 class ModelInitHelper(object):
@@ -137,9 +137,9 @@ class ModelInitHelper(object):
         assert(isinstance(settings, CommonModelSettings))
 
         total_relations_rejected = 0
-        for processed_news in RuAttitudesFormatReader.iter_processed_news(samples_filepath):
+        for processed_news in ContextsReader.iter_processed_news(samples_filepath):
             assert(isinstance(processed_news, ProcessedNews))
-            for relations, s_inds in CustomProcessingHelper.iter_linked_relations(processed_news):
+            for relations, s_inds in NewsProcessingHelper.iter_linked_relations(processed_news):
 
                 rejected_count = registered_relations.add_extracted_relations(
                     relations=relations,

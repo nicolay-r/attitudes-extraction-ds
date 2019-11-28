@@ -106,9 +106,6 @@ def __save_separated_collection(io):
         if not path.exists(dirpath):
             makedirs(dirpath)
 
-    parts_to_split = io.CVCount
-    prefix = u"part_{}.txt"
-
     source_file = io.SourceFile
     target_data_folder = io.SplittedDataFolder
 
@@ -125,6 +122,23 @@ def __save_separated_collection(io):
             else:
                 sample.append(line)
 
+    __write_samples(samples=samples,
+                    io=io,
+                    target_data_folder=target_data_folder,
+                    check_rule=__check_rule if io.CVCount > 2 else __check_rule_fixed)
+
+
+def __write_samples(samples, io, target_data_folder, check_rule):
+    """
+    check_rule: func
+        (sample_index, part_size, part_index)
+    """
+    assert(callable(check_rule))
+
+    parts_to_split = io.CVCount
+    prefix = u"part_{}.txt"
+
+    # CV mode
     random.Random(1).shuffle(samples)
 
     print "Separate samples into {} files".format(io.CVCount)
@@ -141,9 +155,26 @@ def __save_separated_collection(io):
 
             written = 0
             for s_index, sample in enumerate(samples):
-                if s_index / part_size == part_index:
+                if check_rule(s_index, part_size, part_index):
                     for line in sample:
                         out.write(line)
                     written += 1
 
             print "News written: {}".format(written)
+
+
+def __check_rule(s_index, part_size, part_index):
+    """
+    CV.
+    """
+    return s_index / part_size == part_index
+
+
+def __check_rule_fixed(s_index, part_size, part_index):
+    """
+    Fixed, rsr separation.
+    """
+    if part_index == 0:
+        return s_index < 43
+    else:
+        return s_index >= 43

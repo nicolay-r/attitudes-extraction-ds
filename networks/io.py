@@ -4,7 +4,7 @@ import io_utils
 from os import makedirs, path
 from os.path import join, exists
 
-from core.evaluation.utils import FilesToCompareUtils
+from core.evaluation.utils import FilesToCompare
 
 
 class DataType:
@@ -34,12 +34,17 @@ class NetworkIO(object):
     def get_synonyms_collection_filepath():
         return io_utils.get_synonyms_filepath()
 
-    def iter_opinion_files_to_compare(self, data_type, indices):
-        return FilesToCompareUtils.get_list_of_comparable_files(
-            test_filepath_func=lambda doc_id: self.get_model_doc_opins_filepath(doc_id=doc_id,
-                                                                                data_type=data_type),
-            etalon_filepath_func=lambda doc_id: self.get_etalon_doc_opins_filepath(doc_id),
-            indices=indices)
+    def iter_opinion_files_to_compare(self, data_type, etalon_root, indices):
+        model_root = self.__get_model_root(data_type)
+        return NetworkIO.__iter_opin_files_to_compare(indices=indices,
+                                                      model_root=model_root,
+                                                      etalon_root=etalon_root)
+
+    def get_opinion_output_filepath(self, data_type, article_index):
+        model_root = self.__get_model_root(data_type)
+        return io_utils.get_rusentrel_format_sentiment_opin_filepath(index=article_index,
+                                                                     is_etalon=False,
+                                                                     root=model_root)
 
     def get_etalon_root(self):
         raise Exception("Not implemented")
@@ -70,20 +75,15 @@ class NetworkIO(object):
             return u'{}_train'.format(self.__model_name)
         raise Exception("Unsupported data_type: {}".format(data_type))
 
-    def get_etalon_doc_opins_filepath(self, doc_id):
-        assert(isinstance(doc_id, int))
-        return io_utils.get_rusentrel_format_sentiment_opin_filepath(index=doc_id,
-                                                                     is_etalon=True,
-                                                                     root=self.get_etalon_root())
-
-    def get_model_doc_opins_filepath(self, doc_id, data_type):
-        assert(isinstance(doc_id, int))
-        assert(isinstance(data_type, unicode))
-        return io_utils.get_rusentrel_format_sentiment_opin_filepath(index=doc_id,
-                                                                     is_etalon=False,
-                                                                     root=self.__get_model_root(data_type))
-
-    def __iter_opin_files_to_compare(self, indices, model_root):
+    @staticmethod
+    def __iter_opin_files_to_compare(indices, model_root, etalon_root):
         assert(isinstance(indices, collections.Iterable))
         assert(isinstance(model_root, unicode))
+        assert(isinstance(etalon_root, unicode))
 
+        for index in indices:
+            files_to_compare = FilesToCompare(
+                io_utils.get_rusentrel_format_sentiment_opin_filepath(index, is_etalon=False, root=model_root),
+                io_utils.get_rusentrel_format_sentiment_opin_filepath(index, is_etalon=True, root=etalon_root),
+                index)
+            yield files_to_compare

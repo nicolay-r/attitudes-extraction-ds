@@ -1,4 +1,5 @@
 from os import path
+
 from core.evaluation.results.two_class import TwoClassEvalResult
 from networks.callback import Callback
 from networks.cancellation import OperationCancellation

@@ -4,7 +4,7 @@ from networks.context.configurations.base import CommonModelSettings, LabelCalcu
 class MIMLRESettings(CommonModelSettings):
 
     __hidden_size = 300
-    __contexts_per_opinion = 5
+    __contexts_per_opinion = 10
     __context_settings = None
 
     def __init__(self, context_settings):
@@ -12,9 +12,6 @@ class MIMLRESettings(CommonModelSettings):
         super(MIMLRESettings, self).__init__()
         self.__context_settings = context_settings
         self.__context_parameters_fix()
-
-    def modify_contexts_per_opinion(self, value):
-        self.__contexts_per_opinion = value
 
     def set_term_embedding(self, embedding_matrix):
         super(MIMLRESettings, self).set_term_embedding(embedding_matrix)

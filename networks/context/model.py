@@ -150,8 +150,8 @@ class ContextLevelTensorflowModel(TensorflowModel):
         rch.save_into_opinion_collections(
             create_opinion_collection=lambda: OpinionCollection(opinions=None,
                                                                 synonyms=self.ReadOnlySynonymsCollection),
-            create_filepath_by_news_id=lambda news_id: self.IO.get_model_doc_opins_filepath(doc_id=news_id,
-                                                                                            data_type=dest_data_type),
+            create_filepath_by_news_id=lambda news_id: self.IO.get_opinion_output_filepath(article_index=news_id,
+                                                                                           data_type=dest_data_type),
             label_calculation_mode=self.Settings.RelationLabelCalculationMode)
 
         eval_result = self.get_eval_helper().evaluate_model(data_type=dest_data_type,

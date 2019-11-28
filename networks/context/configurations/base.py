@@ -44,7 +44,7 @@ class CommonModelSettings(object):
     __dist_emb_size = 5
     __relations_label_calc_mode = LabelCalculationMode.AVERAGE
 
-    __use_attention = False
+    __use_attention = True
     __attention_model = None
     __attention_config = AttentionConfig()
 

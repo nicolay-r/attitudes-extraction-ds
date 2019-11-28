@@ -64,10 +64,15 @@ class RaNLPConfTaskMIMLREModel(MIMLRETensorflowModel):
     def __save_etalon(self, relation_collection_helper):
         assert(isinstance(relation_collection_helper, ExtractedRelationsCollectionHelper))
 
+        def path_by_news_id(news_id):
+            return io_utils.get_rusentrel_format_sentiment_opin_filepath(index=news_id,
+                                                                         is_etalon=True,
+                                                                         root=self.IO.get_etalon_root())
+
         relation_collection_helper.save_into_opinion_collections(
             create_opinion_collection=lambda: OpinionCollection(opinions=None,
                                                                 synonyms=self.ReadOnlySynonymsCollection),
-            create_filepath_by_news_id=lambda news_id: self.IO.get_etalon_doc_opins_filepath(news_id),
+            create_filepath_by_news_id=path_by_news_id,
             label_calculation_mode=LabelCalculationMode.FIRST_APPEARED)
 
     def get_bags_collection(self, data_type):

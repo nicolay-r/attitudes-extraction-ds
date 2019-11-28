@@ -2,20 +2,17 @@ from os import path, makedirs
 from os.path import join
 
 import io_utils
-from networks.ranlp.io_base import BaseAnswersIO
+from networks.io import NetworkIO
 from networks.ranlp.io_dev import RaNLPConfTaskDevIO
 from networks.ranlp.io_rsr import RaNLPConfTaskRuSentRelIO
 
 
-class RaNLPConfTaskRuSentRelWithDevIO(BaseAnswersIO):
+class RaNLPConfTaskRuSentRelWithDevIO(NetworkIO):
 
     __etalon_root = join(io_utils.get_data_root(), u"ranlp/rsr_dev/opinions")
-    __answers_root_template = join(io_utils.get_data_root(), u"ranlp/rsr_dev/answers/{}")
 
     def __init__(self, model_to_pretrain_name):
-        super(RaNLPConfTaskRuSentRelWithDevIO, self).__init__(
-            answers_root=self.__answers_root_template.format(model_to_pretrain_name),
-            model_name=model_to_pretrain_name)
+        super(RaNLPConfTaskRuSentRelWithDevIO, self).__init__(model_to_pretrain_name)
         self.__cv_index = 0
         self.__io_rsr = RaNLPConfTaskRuSentRelIO(model_to_pretrain_name)
         self.__io_dev = RaNLPConfTaskDevIO(model_to_pretrain_name)
@@ -62,11 +59,7 @@ class RaNLPConfTaskRuSentRelWithDevIO(BaseAnswersIO):
         return io_utils.get_rusvectores_news_embedding_filepath()
 
     def get_etalon_root(self):
-        # TODO. Use the same code. Duplicate
         result = self.__etalon_root
         if not path.exists(result):
             makedirs(result)
         return result
-
-    def iter_test_answers(self):
-        pass

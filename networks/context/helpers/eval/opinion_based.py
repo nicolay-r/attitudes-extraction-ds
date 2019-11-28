@@ -1,9 +1,8 @@
 import collections
 
-from core.evaluation.evaluators.two_class import TwoClassEvaluator
 from core.source.synonyms import SynonymsCollection
 from networks.context.debug import DebugKeys
-from networks.context.helpers.eval.base import EvaluationHelper
+from base import EvaluationHelper
 from networks.io import NetworkIO
 
 
@@ -16,7 +15,8 @@ class OpinionBasedEvaluationHelper(EvaluationHelper):
         assert(isinstance(synonyms, SynonymsCollection) and synonyms.IsReadOnly)
 
         files_to_compare = io.iter_opinion_files_to_compare(data_type=data_type,
+                                                            etalon_root=io.get_etalon_root(),
                                                             indices=indices)
-        evaluator = TwoClassEvaluator(synonyms)
+        evaluator = Evaluator(synonyms)
         return evaluator.evaluate(files_to_compare_list=list(files_to_compare),
                                   debug=DebugKeys.EvaluateDebug)

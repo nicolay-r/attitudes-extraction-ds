@@ -216,7 +216,7 @@ class ContextModelInitHelper(object):
 
             entity_filepath = io.get_entity_filepath(news_index)
             news_filepath = io.get_news_filepath(news_index)
-            opin_filepath = io.get_etalon_doc_opins_filepath(news_index)
+            opin_filepath = io.get_opinion_input_filepath(news_index)
             neutral_filepath = io.get_neutral_filepath(news_index, data_type)
 
             entities = EntityCollection.from_file(entity_filepath, settings.Stemmer, self.__synonyms)
