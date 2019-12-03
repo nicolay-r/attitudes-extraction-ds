@@ -2,6 +2,8 @@
 ![](https://img.shields.io/badge/Python-2.7-brightgreen.svg)
 ![](https://img.shields.io/badge/TensorFlow-1.4.1-yellowgreen.svg)
 
+> **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/ranlp-2019) branch of the latter represents the same code included into this repository.
+
 This repository provides a source code of models and related experiments, 
 conducted as a part of the following paper:
 
@@ -20,8 +22,6 @@ conducted as a part of the following paper:
 3. [RuAttitudes-1.0](https://github.com/nicolay-r/RuAttitudes) -- is a colection, developed in related paper.
 
 ## Convolutional Neural Networks for Relation Extraction 
-
-> **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/ranlp-2019) branch of the latter represents the same code included into this repository.
 
 Checkout [networks](/networks) folder for implementation details.
 
