@@ -21,6 +21,8 @@ conducted as a part of the following paper:
 
 ## Convolutional Neural Networks for Relation Extraction 
 
+> **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/ranlp-2019) branch of the latter represents the same code included into this repository.
+
 Checkout [networks](/networks) folder for implementation details.
 
 Architecture aspects of models are as follows:
