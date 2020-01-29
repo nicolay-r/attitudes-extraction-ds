@@ -8,7 +8,8 @@ This repository provides a source code of models and related experiments,
 conducted as a part of the following paper:
 
 * Distant Supervision for Sentiment Attitude Extraction
-[[paper-ranlp-proceeding]](http://lml.bas.bg/ranlp2019/proceedings-ranlp-2019.pdf),
+/
+[[paper-aclweb]](https://www.aclweb.org/anthology/R19-1118),
 [[poster]](docs/ranlp_2019_poster_portrait.pdf)
     * Rusnachenko Nikolay, Loukachevitch Natalia, Tutubalina Elena
     * RANLP-2019
@@ -165,10 +166,18 @@ cd data && ./install.sh
 ## References
 
 ```
-@article{rusnachenko2019distant,
-  title={Distant Supervision for Sentiment Attitude Extraction},
-  author={Rusnachenko, Nicolay and Loukachevitch, Natalia and Tutubalina, Elena},
-  booktitle={RANLP},
-  year={2019}
+@inproceedings{rusnachenko-etal-2019-distant,
+    title = "Distant Supervision for Sentiment Attitude Extraction",
+    author = "Rusnachenko, Nicolay  and
+      Loukachevitch, Natalia  and
+      Tutubalina, Elena",
+    booktitle = "Proceedings of the International Conference on Recent Advances in Natural Language Processing (RANLP 2019)",
+    month = sep,
+    year = "2019",
+    address = "Varna, Bulgaria",
+    publisher = "INCOMA Ltd.",
+    url = "https://www.aclweb.org/anthology/R19-1118",
+    doi = "10.26615/978-954-452-056-4_118",
+    pages = "1022--1030"
 }
 ```
