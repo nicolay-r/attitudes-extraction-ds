@@ -2,6 +2,10 @@
 ![](https://img.shields.io/badge/Python-2.7-brightgreen.svg)
 ![](https://img.shields.io/badge/TensorFlow-1.4.1-yellowgreen.svg)
 
+> **UPD March 31st, 2020:** In order to results reproduction in the case of  `RSR` and `RSR+RA` experiments, 
+it is important to consider only those opinions that could be fitted in a single context.
+Please proceed the [Evaluation section](#evaluation) in this description for details.
+
 > **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/ranlp-2019) branch of the latter represents the same code included into this repository.
 
 This repository provides a source code of models and related experiments, 
@@ -11,7 +15,7 @@ conducted as a part of the following paper:
 /
 [[paper-aclweb]](https://www.aclweb.org/anthology/R19-1118),
 [[poster]](docs/ranlp_2019_poster_portrait.pdf)
-    * Rusnachenko Nikolay, Loukachevitch Natalia, Tutubalina Elena
+    * Rusnachenko Nicolay, Loukachevitch Natalia, Tutubalina Elena
     * RANLP-2019
 
 ## Data Source References
@@ -71,7 +75,7 @@ We utilize two different approaches:
 2. **Multi Sentence Training:** matching a label towards the sentences set.
     * Models: ```MI-CNN```, ```MI-PCNN```
     
-#### Masking Entities in Model Input
+### Masking Entities in Model Input
     
 Named entities, which are related to *Subject* and *Object* of a given attitude, 
 considered as **masked**. 
@@ -84,9 +88,9 @@ For example, given an attitude 'USA'->'Russia' with the following context:
 
 > **NOTE:** Other named entities, mentioned in text, **remains non-masked**.
 
-#### Model Output
+### Model Output
 
-The output of trained model is a two scale sentiment score: {pos, neg}. [see Note below]
+The output of trained model is a **two scale** sentiment score: {pos, neg}. [see Note below]
 > **NOTE:** We adopt model designed for sentiment attitudes **extraction**, 
 which actually utilize [three scaled](https://github.com/nicolay-r/attitudes-extraction-ds/blob/dcbe4f762f38827df3a042326be768c385b82ca6/predict_nn/ranlp/utils.py#L71) 
 output {pos, neg, **neutral**}, 
@@ -94,7 +98,16 @@ but there were no attitudes with
 neutral score during in train/test subsets; 
 result model may return **neutral** score, however the amount 
 of related attitudes was significantly low.
-	
+
+### Evaluation
+
+**Evaluation results, described in paper** [[download]](data/eval_model_results.zip)
+
+**IMPORTANT**: Evaluation assumes to treat only those pairs which could be found in text as within a single sentence, 
+and also within a context, limited by `TermsPerContext`.
+In turns, labeling RuSentRel includes attitudes that could not be fitted and described by a limited context.
+
+
 ## Embedding Analysis
 
 For words we utilize a pretrained Word2Vec model:
