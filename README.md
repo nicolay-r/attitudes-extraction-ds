@@ -101,12 +101,14 @@ of related attitudes was significantly low.
 
 ### Evaluation
 
+
+
 **Evaluation results, described in paper** [[download]](data/eval_model_results.zip)
 
-**IMPORTANT**: Evaluation assumes to treat only those pairs which could be found in text as within a single sentence, 
+**IMPORTANT**: Evaluation assumes to treat **only those pairs** which could be found in text as within a single sentence, 
 and also within a context, limited by `TermsPerContext`.
-In turns, labeling RuSentRel includes attitudes that could not be fitted and described by a limited context.
-
+In turns, attitude labeling in RuSentRel include ones that could not be fitted and described by a limited context.
+Utilizing the latter in evaluation process, results in a decreased **Recall** and hence in decreased results by `F1`.
 
 ## Embedding Analysis
 
