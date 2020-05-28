@@ -6,7 +6,7 @@
 it is important to consider only those opinions that could be fitted in a single context.
 Please proceed the [Evaluation section](#evaluation) in this description for details.
 
-> **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/ranlp-2019) branch of the latter represents the same code included into this repository.
+> **UPD December 3rd, 2019:** `core` folder nowadays is an [AREkit](https://github.com/nicolay-r/AREkit) framework, and [ranlp-2019](https://github.com/nicolay-r/AREkit/tree/0.19.2-ranlp-rc) branch of the latter represents the same code included into this repository.
 
 This repository provides a source code of models and related experiments, 
 conducted as a part of the following paper:
